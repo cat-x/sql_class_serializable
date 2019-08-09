@@ -1,7 +1,3 @@
-// Copyright (c) 2017, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 /// Configuration for using `package:build`-compatible build systems.
 ///
 /// See:
@@ -18,16 +14,16 @@ import 'package:sql_class_annotation/sql_class_annotation.dart';
 import 'src/json_part_builder.dart';
 
 /// Supports `package:build_runner` creation and configuration of
-/// `json_serializable`.
+/// `sql_class_serializable`.
 ///
 /// Not meant to be invoked by hand-authored code.
-Builder jsonSerializable(BuilderOptions options) {
+Builder classSerializable(BuilderOptions options) {
   try {
     final config = TableSerializable.fromJson(options.config);
     return jsonPartBuilder(config: config);
   } on CheckedFromJsonException catch (e) {
     final lines = <String>[
-      'Could not parse the options provided for `json_serializable`.'
+      'Could not parse the options provided for `sql_class_serializable`.'
     ];
 
     if (e.key != null) {
